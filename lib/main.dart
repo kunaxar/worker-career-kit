@@ -85,7 +85,7 @@ class _ShellState extends State<Shell> {
   int tab = 0;
   @override
   Widget build(BuildContext context) {
-    const pages = [ProfilePage(), PathPage(), KitPage(), FundingPage(), NewJobPage()];
+    final pages = <Widget>[ProfilePage(), PathPage(), KitPage(), FundingPage(), NewJobPage()];
     return ListenableBuilder(
       listenable: state,
       builder: (c, _) => Scaffold(
