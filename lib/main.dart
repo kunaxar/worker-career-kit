@@ -85,7 +85,6 @@ class _ShellState extends State<Shell> {
   int tab = 0;
   @override
   Widget build(BuildContext context) {
-    final pages = <Widget>[ProfilePage(), PathPage(), KitPage(), FundingPage(), NewJobPage()];
     return ListenableBuilder(
       listenable: state,
       builder: (c, _) => Scaffold(
@@ -99,7 +98,7 @@ class _ShellState extends State<Shell> {
             )
           ],
         ),
-        body: SafeArea(child: Center(child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 640), child: pages[tab]))),
+        body: SafeArea(child: Center(child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 640), child: <Widget>[ProfilePage(), PathPage(), KitPage(), FundingPage(), NewJobPage()][tab]))),
         bottomNavigationBar: NavigationBar(
           selectedIndex: tab,
           onDestinationSelected: (i) => setState(() => tab = i),
