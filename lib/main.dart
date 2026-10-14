@@ -26,7 +26,7 @@ enum Prov { self, attested, issuer }
 
 String provLabel(Prov p) => switch (p) {
       Prov.self => 'Self-described',
-      Prov.attested => 'Supervisor-attested',
+      Prov.attested => 'Supervisor-attested (demo)',
       Prov.issuer => 'Issuer-verified',
     };
 
@@ -199,7 +199,7 @@ class ProfilePage extends StatelessWidget {
               : null,
         ),
       h('Credentials'),
-      note('Verified means the issuer confirmed it. Self-added stays separate.'),
+      note('Demo credentials. In a real product, verified would mean the issuer confirmed it. Tasks are never issuer-verified here: only a supervisor can confirm a task, and in this demo that is simulated.'),
       for (final c in state.creds)
         ListTile(
           contentPadding: EdgeInsets.zero,
@@ -264,7 +264,7 @@ class SharedView extends StatelessWidget {
           if (state.showEmail) const Text('Email: marcus@example.com (demo)'),
           if (!state.showPhone) OutlinedButton(onPressed: null, child: const Text('Message Marcus')),
           if (state.showClaims) ...[h('Tasks'), for (final c in state.claims) Padding(padding: const EdgeInsets.only(bottom: 6), child: Row(children: [Expanded(child: Text(c.text)), ProvChip(c.prov)]))],
-          if (state.showCreds) ...[h('Credentials'), for (final c in state.creds) Text('${c.verified ? "Verified" : "Not verified"}: ${c.name}')],
+          if (state.showCreds) ...[h('Credentials'), for (final c in state.creds) Text('${c.verified ? "Verified (demo)" : "Not verified"}: ${c.name}')],
         ]),
       );
 }
@@ -300,7 +300,7 @@ class PathPage extends StatelessWidget {
             leading: const Icon(Icons.warning_amber, color: Colors.orange),
             title: const Text('OSHA 10 card is not verified'),
             subtitle: const Text('Ask the issuer or training provider to verify it.'),
-            trailing: TextButton(onPressed: () => open('https://www.careeronestop.org/FindTraining/Types/certification.aspx'), child: const Text('Find')),
+            trailing: TextButton(onPressed: () => open('https://www.careeronestop.org/Toolkit/Training/find-certifications.aspx'), child: const Text('Find')),
           ),
           const Divider(height: 1),
           ListTile(
@@ -337,7 +337,7 @@ class KitPage extends StatelessWidget {
         const SizedBox(width: 8),
         Expanded(child: OutlinedButton.icon(onPressed: () => showDialog(context: context, builder: (_) => AlertDialog(title: const Text('Sample QR (demo)'), content: SizedBox(width: 200, height: 200, child: CustomPaint(painter: FakeQr())), actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close'))])), icon: const Icon(Icons.qr_code_2), label: const Text('Show QR'))),
       ]),
-      note('The QR above is a decorative sample. It does not scan.'),
+      note('Show QR opens a decorative sample. It does not scan.'),
       h('One-page summary for the union hall or site'),
       Container(
         color: Colors.white,
