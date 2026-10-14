@@ -1,0 +1,12 @@
+name: worker_career_kit
+description: Prototype of career-record ideas for craft workers. Fictional demo data only.
+publish_to: none
+version: 0.1.0
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.3.0
+flutter:
+  uses-material-design: true
